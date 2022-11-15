@@ -1,0 +1,57 @@
+version: "3.9"
+services:
+  #MongoDB
+  mongo:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongo-data:/data/db
+  
+  #MySQL
+  mysql:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=password
+    volumes:
+      - mysql-data:/var/lib/mysql
+  
+  #PostgreSQL
+  postgresql:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/pgdata
+
+  #Adminer
+  adminer:
+    image: adminer:latest
+    ports:
+      - 8080:8080
+
+  #Nginx
+  nginx:
+    build: nginx
+    ports:
+      - 80:80
+    
+
+volumes:
+  mongo-data:
+    driver: local
+  mysql-data:
+    driver: local
+  postgres-data:
+    driver: local
