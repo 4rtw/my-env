@@ -14,6 +14,7 @@ Just a docker environment of the most stack i use. A test environment and sandbo
 # REQUIREMENTS
  - Docker with docker compose.
  - Domain Name (you can get a free domain [here](https://freenom.com)).
+ - Add all required subdomain record to your domain provider. `Example: A record for mysql.example.com pointing to your public IP Adress` 
 # NOTES
  - If you create `FOO=bar` in your `.env`, use `${FOO}` in your `docker-compose.yml`.
  - If you encounter a problem, delete volumes and recreate your docker environment.
