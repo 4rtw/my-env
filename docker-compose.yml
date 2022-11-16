@@ -6,7 +6,7 @@ services:
     ports:
       - 27017:27017
     labels:
-      - traefik.http.routers.mongo.rule=Host(`mongo.4rtw.tk`)
+      - traefik.http.routers.mongo.rule=Host(`mongo.${DNS_NAME}`)
       - "traefik.http.routers.mongo.tls=true"
       - "traefik.http.routers.mongo.tls.certresolver=myresolver"
     environment:
@@ -22,7 +22,7 @@ services:
     ports:
       - 3306:3306
     labels:
-      - traefik.http.routers.mysql.rule=Host(`mysql.4rtw.tk`)
+      - traefik.http.routers.mysql.rule=Host(`mysql.${DNS_NAME}`)
       - "traefik.http.routers.mysql.tls=true"
       - "traefik.http.routers.mysql.tls.certresolver=myresolver"
     environment:
@@ -39,7 +39,7 @@ services:
     ports:
       - 5432:5432
     labels:
-      - traefik.http.routers.postgresql.rule=Host(`postgresql.4rtw.tk`)
+      - traefik.http.routers.postgresql.rule=Host(`postgresql.${DNS_NAME}`)
       - "traefik.http.routers.postgresql.tls=true"
       - "traefik.http.routers.postgresql.tls.certresolver=myresolver"
     environment:
@@ -56,7 +56,7 @@ services:
     ports:
       - 8020:8080
     labels:
-      - traefik.http.routers.adminer.rule=Host(`adminer.4rtw.tk`)
+      - traefik.http.routers.adminer.rule=Host(`adminer.${DNS_NAME}`)
       - "traefik.http.routers.adminer.tls=true"
       - "traefik.http.routers.adminer.tls.certresolver=myresolver"
     networks:
@@ -67,7 +67,7 @@ services:
     ports:
       - 8010:80
     labels:
-      - traefik.http.routers.hello-world.rule=Host(`www.4rtw.tk`)
+      - traefik.http.routers.hello-world.rule=Host(`www.${DNS_NAME}`)
       - "traefik.http.routers.hello-world.tls=true"
       - "traefik.http.routers.hello-world.tls.certresolver=myresolver"
     networks:
@@ -95,9 +95,9 @@ services:
       - "traefik.http.middlewares.httpsonly.redirectscheme.permanent=true"
       - "traefik.http.routers.httpsonly.rule=HostRegexp(`{any:.*}`)"
       - "traefik.http.routers.httpsonly.middlewares=httpsonly"
-      - "traefik.http.routers.dashboard.rule=Host(`dev.4rtw.tk`)"
+      - "traefik.http.routers.dashboard.rule=Host(`dev.${DNS_NAME}`)"
       - "traefik.http.routers.dashboard.service=dashboard@internal"
-      - "traefik.http.routers.api.rule=Host(`dev.4rtw.tk`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.api.rule=Host(`dev.${DNS_NAME}`) && PathPrefix(`/api`)"
       - "traefik.http.routers.api.service=api@internal"
       - "traefik.http.routers.dashboard.tls=true"
       - "traefik.http.routers.dashboard.tls.certresolver=myresolver"
