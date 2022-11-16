@@ -74,7 +74,7 @@ services:
       - env-network
 
   traefik:
-    image: traefik:v2.9
+    image: traefik:latest
     # Enables the web UI and tells Traefik to listen to docker
     command:
       - "--providers.docker"
