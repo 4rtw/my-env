@@ -81,7 +81,7 @@ services:
       - "--api.insecure=true"
       - "--entryPoints.web.address=:80"
       - "--entryPoints.websecure.address=:443"
-      - "--certificatesResolvers.myresolver.acme.email=ando.l.andria@gmail.com"
+      - "--certificatesResolvers.myresolver.acme.email=${DNS_EMAIL}"
       - "--certificatesResolvers.myresolver.acme.storage=/data/acme.json"
       - "--certificatesresolvers.myresolver.acme.caServer=https://acme-v02.api.letsencrypt.org/directory"
       - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
